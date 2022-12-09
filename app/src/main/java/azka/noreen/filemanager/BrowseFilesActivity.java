@@ -8,11 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class BrowseFilesActivity extends AppCompatActivity {
     RecyclerView recycleView;
-    ArrayList<StorageItems> studentArrayList;
+    ArrayList<StorageItems> studentArrayList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,12 +24,17 @@ public class BrowseFilesActivity extends AppCompatActivity {
 //        studentArrayList= initStudentPrameterList();
 
         Intent intent=getIntent();
-        Toast.makeText(this, intent.getStringExtra("RootPath"), Toast.LENGTH_SHORT).show();
+        String rootPath=intent.getStringExtra("RootPath");
+        File file=new File(rootPath);
+        File[] childFiles = file.listFiles();
 
-
+        for(int i=0; i<childFiles.length; i++){
+            String fName=childFiles[i].getName();
+            String fPath=childFiles[i].getPath();
+            StorageItems storageItems=new StorageItems(fName,fPath);
+            studentArrayList.add(storageItems);
+        }
         InitRecycleView();
-
-
     }
     public void InitRecycleView(){
         RecyclerViewAdapter rva=new RecyclerViewAdapter();

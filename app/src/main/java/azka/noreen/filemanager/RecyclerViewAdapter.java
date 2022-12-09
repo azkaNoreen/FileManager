@@ -1,14 +1,17 @@
 package azka.noreen.filemanager;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -35,8 +38,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         StorageItemsViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(view.getContext(), st.getName(), Toast.LENGTH_SHORT).show();
-//                myInterface.onStorageItemsClick(st);
+                File file=new File(st.getFileName());
+
+                if(!(file.isDirectory()))
+                {
+                    Intent intent=new Intent(view.getContext(),BrowseFilesActivity.class);
+                    intent.putExtra("RootPath",st.getFilePath());
+                    view.getContext().startActivity(intent);
+                }
+                else{
+                    Toast.makeText(view.getContext(), st.getFilePath(), Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
