@@ -25,13 +25,8 @@ public class BrowseFilesActivity extends AppCompatActivity {
         text=findViewById(R.id.text);
         text.setVisibility(View.GONE);
 
-
-
-//        studentArrayList= initStudentPrameterList();
-
         Intent intent=getIntent();
         String rootPath=intent.getStringExtra("RootPath");
-//        String fileName=intent.getStringExtra("fileName");
         File rt=new File(rootPath);
         File[] files=rt.listFiles();
         if(files==null||files.length==0)

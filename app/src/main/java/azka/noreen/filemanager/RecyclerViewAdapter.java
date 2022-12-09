@@ -38,19 +38,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         StorageItemsViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                File file=new File(st.getFileName());
 
-                if(!(file.isDirectory()))
-                {
                     Intent intent=new Intent(view.getContext(),BrowseFilesActivity.class);
                     intent.putExtra("RootPath",st.getFilePath());
-                    intent.putExtra("fileName",st.getFileName());
-
                     view.getContext().startActivity(intent);
-                }
-                else{
-                    Toast.makeText(view.getContext(), st.getFilePath(), Toast.LENGTH_SHORT).show();
-                }
 
             }
         });

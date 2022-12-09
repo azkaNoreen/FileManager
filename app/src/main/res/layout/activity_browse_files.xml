@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/text"
         android:text="This is Recycler View"
+        android:textSize="31sp"
         ></TextView>
 
     <androidx.recyclerview.widget.RecyclerView
