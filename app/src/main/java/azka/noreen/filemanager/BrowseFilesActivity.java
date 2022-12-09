@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -13,18 +15,32 @@ import java.util.ArrayList;
 
 public class BrowseFilesActivity extends AppCompatActivity {
     RecyclerView recycleView;
+    TextView text;
     ArrayList<StorageItems> studentArrayList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_files);
         recycleView=findViewById(R.id.rv);
+        text=findViewById(R.id.text);
+        text.setVisibility(View.GONE);
+
 
 
 //        studentArrayList= initStudentPrameterList();
 
         Intent intent=getIntent();
         String rootPath=intent.getStringExtra("RootPath");
+//        String fileName=intent.getStringExtra("fileName");
+        File rt=new File(rootPath);
+        File[] files=rt.listFiles();
+        if(files==null||files.length==0)
+        {
+            text.setVisibility(View.VISIBLE);
+            text.setText(rootPath);
+            return;
+        }
+
         File file=new File(rootPath);
         File[] childFiles = file.listFiles();
 

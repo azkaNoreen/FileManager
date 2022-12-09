@@ -44,6 +44,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 {
                     Intent intent=new Intent(view.getContext(),BrowseFilesActivity.class);
                     intent.putExtra("RootPath",st.getFilePath());
+                    intent.putExtra("fileName",st.getFileName());
+
                     view.getContext().startActivity(intent);
                 }
                 else{
