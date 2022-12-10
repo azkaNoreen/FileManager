@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,9 +36,42 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         StorageItemsViewHolder.StorageItemsTextName.setText(st.getFileName());
         StorageItemsViewHolder.StorageItemsPhone.setText(st.getFilePath());
+        File file=new File(st.getFilePath());
+
+        if(file.isDirectory()){
+            StorageItemsViewHolder.img.setImageResource(R.drawable.ic_folder);
+        }
+        else if(st.getFileName().endsWith(".mp3")||st.getFileName().endsWith(".wav")||st.getFileName().endsWith(".m4a"))
+        {
+            StorageItemsViewHolder.img.setImageResource(R.drawable.ic_music);
+
+        }else if(st.getFileName().endsWith(".jpg")||st.getFileName().endsWith(".jpeg")||st.getFileName().endsWith(".webp"))
+        {
+            StorageItemsViewHolder.img.setImageResource(R.drawable.ic_baseline_image_24);
+        }
+        else if(st.getFileName().endsWith(".mp4")||st.getFileName().endsWith(".mov")||st.getFileName().endsWith(".avi")||st.getFileName().endsWith(".mkv"))
+        {
+            StorageItemsViewHolder.img.setImageResource(R.drawable.ic_baseline_videocam_24);
+        }
+        else if(st.getFileName().endsWith(".txt"))
+        {
+            StorageItemsViewHolder.img.setImageResource(R.drawable.ic_baseline_text_snippet_24);
+        }
+        else{
+            StorageItemsViewHolder.img.setImageResource(R.drawable.ic_baseline_insert_drive_file_24);
+
+        }
+
+//        String filepath=st.getFilePath();
+//        String extension = filepath.substring(filepath.lastIndexOf("."));
+//        StorageItemsViewHolder.StorageItemsPhone.setText(extension);
+//
+//        StorageItemsViewHolder.img.setImageResource(R.drawable.ic_folder);
+
         StorageItemsViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
                     Intent intent=new Intent(view.getContext(),BrowseFilesActivity.class);
                     intent.putExtra("RootPath",st.getFilePath());
@@ -60,13 +94,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         TextView StorageItemsTextName;
         TextView StorageItemsPhone;
-        public StorageItemsViewHolder(@NonNull View itemView) {
+    ImageView img;
+
+    public StorageItemsViewHolder(@NonNull View itemView) {
             super(itemView);
 
             StorageItemsTextName=itemView.findViewById(R.id.fileName);
             StorageItemsPhone=itemView.findViewById(R.id.filePath);
+        img=itemView.findViewById(R.id.img);
 
-        }
+
+    }
     }
 
 }

@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
->
+    android:orientation="horizontal"
+    android:paddingVertical="5dp">
 
-    <TextView
+    <ImageView
+        android:id="@+id/img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fileName"
-        android:text="This is Student"
-        android:textSize="20sp"
-        ></TextView>
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="12dp"
+        android:src="@drawable/ic_folder"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/filePath"
-        android:text="This is Student"
-        android:padding="12dp"
-        android:textSize="20sp"
-        android:layout_below="@+id/fileName"
-        ></TextView>
-</RelativeLayout>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fileName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This is Student"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textSize="14sp"
+            app:drawableTint="#FFC107" />
+
+        <TextView
+            android:id="@+id/filePath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This is Student"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+</LinearLayout>
