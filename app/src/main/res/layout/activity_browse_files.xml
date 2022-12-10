@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="This is Recycler View"
-        android:textSize="31sp"
+        android:textSize="11sp"
+        android:hint="black"
         app:drawableTint="#000000"></TextView>
 
     <androidx.recyclerview.widget.RecyclerView

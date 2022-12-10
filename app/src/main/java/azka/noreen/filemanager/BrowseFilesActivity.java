@@ -27,18 +27,15 @@ public class BrowseFilesActivity extends AppCompatActivity {
 
         Intent intent=getIntent();
         String rootPath=intent.getStringExtra("RootPath");
-        File rt=new File(rootPath);
-        File[] files=rt.listFiles();
-        if(files==null||files.length==0)
+        File file=new File(rootPath);
+        File[] childFiles = file.listFiles();
+
+        if(childFiles==null||childFiles.length==0)
         {
             text.setVisibility(View.VISIBLE);
             text.setText(rootPath);
             return;
         }
-
-        File file=new File(rootPath);
-        File[] childFiles = file.listFiles();
-
         for(int i=0; i<childFiles.length; i++){
             String fName=childFiles[i].getName();
             String fPath=childFiles[i].getPath();
@@ -51,7 +48,6 @@ public class BrowseFilesActivity extends AppCompatActivity {
         RecyclerViewAdapter rva=new RecyclerViewAdapter();
         recycleView.setAdapter(rva);
         recycleView.setLayoutManager(new LinearLayoutManager(this));
-
         rva.setData(studentArrayList);
 
     }

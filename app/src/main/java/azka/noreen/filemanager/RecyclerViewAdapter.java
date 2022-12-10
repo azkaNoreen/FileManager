@@ -33,6 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         StorageItems st=StorageItemsArrayList.get(position);
         StorageItemsViewHolder StorageItemsViewHolder= (StorageItemsViewHolder) holder;
+        StorageItemsViewHolder.StorageItemsPhone.setSelected(true);
 
         StorageItemsViewHolder.StorageItemsTextName.setText(st.getFileName());
         StorageItemsViewHolder.StorageItemsPhone.setText(st.getFilePath());
